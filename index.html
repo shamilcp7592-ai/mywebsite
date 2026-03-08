@@ -10,23 +10,18 @@ background:black;
 color:white;
 font-family:Arial;
 text-align:center;
+overflow:hidden;
 }
 
 h1{
 color:#00ff99;
-font-size:40px;
 margin-top:40px;
+text-shadow:0 0 15px #00ffff;
 }
 
-p{
-font-size:18px;
+.subtitle{
+color:gray;
 margin-bottom:40px;
-}
-
-.contact-title{
-font-size:45px;
-margin-top:60px;
-text-shadow:0 0 20px cyan;
 }
 
 .btn{
@@ -35,21 +30,38 @@ width:250px;
 margin:20px auto;
 padding:15px;
 border-radius:40px;
-border:2px solid #00ffff;
+border:2px solid cyan;
 color:white;
 text-decoration:none;
-font-size:18px;
-box-shadow:0 0 20px #00ffff;
+box-shadow:0 0 20px cyan;
 }
 
 .btn:hover{
-background:#00ffff;
+background:cyan;
 color:black;
 }
 
-footer{
-margin-top:60px;
-color:gray;
+.skills{
+width:200px;
+margin:auto;
+}
+
+progress{
+width:100%;
+}
+
+.card{
+border:1px solid cyan;
+margin:15px;
+padding:10px;
+box-shadow:0 0 15px cyan;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
 </style>
@@ -59,29 +71,77 @@ color:gray;
 <body>
 
 <h1>Shemil CP</h1>
-<p>Engineering Student</p>
+<p class="subtitle">Engineering Student</p>
 
-<div class="contact-title">
-Contact
+<h2>Contact</h2>
+
+<a class="btn" href="https://instagram.com/shemil_mohd_cp">Instagram</a>
+<a class="btn" href="mailto:youremail@gmail.com">Email</a>
+<a class="btn" href="tel:+918075741342">Phone</a>
+<a class="btn" href="https://wa.me/918075741342">WhatsApp</a>
+
+<h2>Skills</h2>
+
+<div class="skills">
+HTML
+<progress value="90" max="100"></progress>
+
+CSS
+<progress value="80" max="100"></progress>
+
+Python
+<progress value="70" max="100"></progress>
 </div>
 
-<a class="btn" href="https://instagram.com/shemil_mohd_cp">
-Instagram
-</a>
+<h2>Projects</h2>
 
-<a class="btn" href="mailto:youremail@gmail.com">
-Email
-</a>
+<div class="card">
+<h3>Portfolio Website</h3>
+<p>My personal portfolio website.</p>
+</div>
 
-<a class="btn" href="tel:+918075741342">
-Phone
-</a>
-<a class="btn" href="https://wa.me/918075741342">
-WhatsApp
-</a>
-<footer>
-© 2026 Shemil CP
-</footer>
+<div class="card">
+<h3>Future AI Projects</h3>
+<p>Coming soon...</p>
+</div>
+
+<canvas id="bg"></canvas>
+
+<script>
+
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:2
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#00ffff";
+
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fill();
+});
+
+requestAnimationFrame(draw);
+}
+
+draw();
+
+</script>
 
 </body>
 </html>
