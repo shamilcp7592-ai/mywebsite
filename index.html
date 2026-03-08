@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Portfolio</title>
-<h2>About Me</h2>
-<p>I am Muhammed Shamil. I am learning web development.</p>
+<title>Shemil CP</title>
+
 <style>
 
 body{
 background:black;
 color:white;
-text-align:center;
 font-family:Arial;
-}
-
-img{
-width:150px;
-border-radius:50%;
-margin-top:40px;
+text-align:center;
 }
 
 h1{
-color:gold;
+color:#00ff99;
+font-size:40px;
+margin-top:40px;
 }
 
-button{
-padding:12px 20px;
-background:gold;
-border:none;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
+p{
+font-size:18px;
+margin-bottom:40px;
+}
+
+.contact-title{
+font-size:45px;
+margin-top:60px;
+text-shadow:0 0 20px cyan;
+}
+
+.btn{
+display:block;
+width:250px;
+margin:20px auto;
+padding:15px;
+border-radius:40px;
+border:2px solid #00ffff;
+color:white;
+text-decoration:none;
+font-size:18px;
+box-shadow:0 0 20px #00ffff;
+}
+
+.btn:hover{
+background:#00ffff;
+color:black;
+}
+
+footer{
+margin-top:60px;
+color:gray;
 }
 
 </style>
@@ -37,36 +57,29 @@ cursor:pointer;
 </head>
 
 <body>
-<h1>Muhammed Shamil</h1>
 
-<p>Welcome to my personal website</p>
+<h1>Shemil CP</h1>
+<p>Engineering Student</p>
 
-<button onclick="message()">Contact Me</button>
-<h2>About Me</h2>
-<p>I am Muhammed Shamil. I am learning web development.</p>
-<h2>My Social Media</h2>
-<a href="https://instagram.com/shemil_mohd_cp" target="_blank">
-<button>Instagram</button>
+<div class="contact-title">
+Contact
+</div>
+
+<a class="btn" href="https://instagram.com/shemil_mohd_cp">
+Instagram
 </a>
-<br><br>
-<a href="https://wa.me/918075741342" target="_blank">
-<button>WhatsApp</button>
+
+<a class="btn" href="mailto:youremail@gmail.com">
+Email
 </a>
-<a href="https://instagram.com/shemil_mohd_cp">Instagram</a>
 
-<br><br>
+<a class="btn" href="tel:+918075741342">
+Phone
+</a>
 
-<a href="https://wa.me/918075741342">WhatsApp</a>
-
-<br><br>
-
-<a href="#">YouTube</a>
-function message(){
-alert("Welcome to my website!");
-}
-
-</script>
+<footer>
+© 2026 Shemil CP
+</footer>
 
 </body>
-
 </html>
