@@ -7,37 +7,42 @@
 
 body{
 background:black;
-color:white;
-font-family:Arial;
+color:#00ff9f;
+font-family:monospace;
 text-align:center;
-overflow:hidden;
+margin:0;
+}
+
+.profile{
+width:120px;
+border-radius:50%;
+margin-top:40px;
+box-shadow:0 0 20px #00ff9f;
 }
 
 h1{
-color:#00ff99;
-margin-top:40px;
-text-shadow:0 0 15px #00ffff;
+text-shadow:0 0 20px #00ff9f;
 }
 
-.subtitle{
-color:gray;
-margin-bottom:40px;
+.typing{
+color:white;
+margin-bottom:30px;
 }
 
 .btn{
 display:block;
-width:250px;
-margin:20px auto;
-padding:15px;
-border-radius:40px;
-border:2px solid cyan;
-color:white;
+width:240px;
+margin:15px auto;
+padding:14px;
+border-radius:30px;
+border:1px solid #00ff9f;
+color:#00ff9f;
 text-decoration:none;
-box-shadow:0 0 20px cyan;
+box-shadow:0 0 15px #00ff9f;
 }
 
 .btn:hover{
-background:cyan;
+background:#00ff9f;
 color:black;
 }
 
@@ -51,10 +56,11 @@ width:100%;
 }
 
 .card{
-border:1px solid cyan;
-margin:15px;
+border:1px solid #00ff9f;
+margin:20px auto;
+width:250px;
 padding:10px;
-box-shadow:0 0 15px cyan;
+box-shadow:0 0 15px #00ff9f;
 }
 
 canvas{
@@ -70,19 +76,24 @@ z-index:-1;
 
 <body>
 
+<img src="https://i.imgur.com/8Km9tLL.png" class="profile">
+
 <h1>Shemil CP</h1>
-<p class="subtitle">Engineering Student</p>
+
+<p class="typing" id="typing"></p>
 
 <h2>Contact</h2>
 
 <a class="btn" href="https://instagram.com/shemil_mohd_cp">Instagram</a>
-<a class="btn" href="mailto:youremail@gmail.com">Email</a>
-<a class="btn" href="tel:+918075741342">Phone</a>
+
 <a class="btn" href="https://wa.me/918075741342">WhatsApp</a>
+
+<a class="btn" href="tel:+918075741342">Phone</a>
 
 <h2>Skills</h2>
 
 <div class="skills">
+
 HTML
 <progress value="90" max="100"></progress>
 
@@ -91,6 +102,7 @@ CSS
 
 Python
 <progress value="70" max="100"></progress>
+
 </div>
 
 <h2>Projects</h2>
@@ -101,45 +113,68 @@ Python
 </div>
 
 <div class="card">
-<h3>Future AI Projects</h3>
+<h3>Future AI Project</h3>
 <p>Coming soon...</p>
 </div>
 
-<canvas id="bg"></canvas>
+<canvas id="matrix"></canvas>
 
 <script>
 
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
+let text="Engineering Student | Future Tech Developer";
+let i=0;
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles=[];
-
-for(let i=0;i<120;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:2
-});
+function typing(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,70);
 }
+}
+
+typing();
+
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+
+canvas.height=window.innerHeight;
+canvas.width=window.innerWidth;
+
+let letters="01";
+letters=letters.split("");
+
+let fontSize=14;
+let columns=canvas.width/fontSize;
+
+let drops=[];
+
+for(let x=0;x<columns;x++)
+drops[x]=1;
 
 function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle="#00ffff";
+ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
 
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-ctx.fill();
-});
+ctx.fillStyle="#0f0";
+ctx.font=fontSize+"px monospace";
 
-requestAnimationFrame(draw);
+for(let i=0;i<drops.length;i++){
+
+let text=letters[Math.floor(Math.random()*letters.length)];
+
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+drops[i]=0;
+
+drops[i]++;
+
 }
 
-draw();
+}
+
+setInterval(draw,33);
 
 </script>
 
